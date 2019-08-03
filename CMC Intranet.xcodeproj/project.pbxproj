@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -12,6 +12,9 @@
 		0853C19E22E61E6B0086F002 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0853C19C22E61E6B0086F002 /* Main.storyboard */; };
 		0853C1A022E61E6B0086F002 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0853C19F22E61E6B0086F002 /* Assets.xcassets */; };
 		0853C1A322E61E6B0086F002 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0853C1A122E61E6B0086F002 /* LaunchScreen.storyboard */; };
+		0853C1AB22E61EF30086F002 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0853C1AA22E61EF30086F002 /* Extensions.swift */; };
+		0853C1AF22E622120086F002 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0853C1AE22E622120086F002 /* GoogleService-Info.plist */; };
+		45B9199F1C49AD8889E5D8D7 /* Pods_CMC_Intranet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBFDCCD3B327D6EE067C776C /* Pods_CMC_Intranet.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +25,12 @@
 		0853C19F22E61E6B0086F002 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0853C1A222E61E6B0086F002 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0853C1A422E61E6B0086F002 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0853C1AA22E61EF30086F002 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		0853C1AE22E622120086F002 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		086D805322F6177100B76DCD /* CMC Intranet.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "CMC Intranet.entitlements"; sourceTree = "<group>"; };
+		2B1DC32B959507C85221C574 /* Pods-CMC Intranet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CMC Intranet.release.xcconfig"; path = "Target Support Files/Pods-CMC Intranet/Pods-CMC Intranet.release.xcconfig"; sourceTree = "<group>"; };
+		BE37B41DB14A2258616E0BE3 /* Pods-CMC Intranet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CMC Intranet.debug.xcconfig"; path = "Target Support Files/Pods-CMC Intranet/Pods-CMC Intranet.debug.xcconfig"; sourceTree = "<group>"; };
+		FBFDCCD3B327D6EE067C776C /* Pods_CMC_Intranet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CMC_Intranet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,17 +38,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				45B9199F1C49AD8889E5D8D7 /* Pods_CMC_Intranet.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		02238836578E4E710D5FD185 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FBFDCCD3B327D6EE067C776C /* Pods_CMC_Intranet.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		0853C18C22E61E6A0086F002 = {
 			isa = PBXGroup;
 			children = (
 				0853C19722E61E6A0086F002 /* CMC Intranet */,
 				0853C19622E61E6A0086F002 /* Products */,
+				B87FF971D56B3F1B656F02AA /* Pods */,
+				02238836578E4E710D5FD185 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -54,14 +74,26 @@
 		0853C19722E61E6A0086F002 /* CMC Intranet */ = {
 			isa = PBXGroup;
 			children = (
+				086D805322F6177100B76DCD /* CMC Intranet.entitlements */,
 				0853C19822E61E6A0086F002 /* AppDelegate.swift */,
 				0853C19A22E61E6A0086F002 /* ViewController.swift */,
+				0853C1AA22E61EF30086F002 /* Extensions.swift */,
 				0853C19C22E61E6B0086F002 /* Main.storyboard */,
 				0853C19F22E61E6B0086F002 /* Assets.xcassets */,
 				0853C1A122E61E6B0086F002 /* LaunchScreen.storyboard */,
 				0853C1A422E61E6B0086F002 /* Info.plist */,
+				0853C1AE22E622120086F002 /* GoogleService-Info.plist */,
 			);
 			path = "CMC Intranet";
+			sourceTree = "<group>";
+		};
+		B87FF971D56B3F1B656F02AA /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				BE37B41DB14A2258616E0BE3 /* Pods-CMC Intranet.debug.xcconfig */,
+				2B1DC32B959507C85221C574 /* Pods-CMC Intranet.release.xcconfig */,
+			);
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -71,9 +103,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0853C1A722E61E6B0086F002 /* Build configuration list for PBXNativeTarget "CMC Intranet" */;
 			buildPhases = (
+				DBDFDD08C1FDF7445F84A8C3 /* [CP] Check Pods Manifest.lock */,
 				0853C19122E61E6A0086F002 /* Sources */,
 				0853C19222E61E6A0086F002 /* Frameworks */,
 				0853C19322E61E6A0086F002 /* Resources */,
+				481F607679DF56A7BEA49BDE /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -96,6 +130,14 @@
 				TargetAttributes = {
 					0853C19422E61E6A0086F002 = {
 						CreatedOnToolsVersion = 10.2.1;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -123,6 +165,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0853C1A322E61E6B0086F002 /* LaunchScreen.storyboard in Resources */,
+				0853C1AF22E622120086F002 /* GoogleService-Info.plist in Resources */,
 				0853C1A022E61E6B0086F002 /* Assets.xcassets in Resources */,
 				0853C19E22E61E6B0086F002 /* Main.storyboard in Resources */,
 			);
@@ -130,12 +173,55 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		481F607679DF56A7BEA49BDE /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CMC Intranet/Pods-CMC Intranet-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CMC Intranet/Pods-CMC Intranet-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CMC Intranet/Pods-CMC Intranet-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DBDFDD08C1FDF7445F84A8C3 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-CMC Intranet-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		0853C19122E61E6A0086F002 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				0853C19B22E61E6A0086F002 /* ViewController.swift in Sources */,
+				0853C1AB22E61EF30086F002 /* Extensions.swift in Sources */,
 				0853C19922E61E6A0086F002 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -280,11 +366,15 @@
 		};
 		0853C1A822E61E6B0086F002 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BE37B41DB14A2258616E0BE3 /* Pods-CMC Intranet.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = "CMC Intranet/CMC Intranet.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 457Y6A548A;
 				INFOPLIST_FILE = "CMC Intranet/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -298,11 +388,15 @@
 		};
 		0853C1A922E61E6B0086F002 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2B1DC32B959507C85221C574 /* Pods-CMC Intranet.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = "CMC Intranet/CMC Intranet.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 457Y6A548A;
 				INFOPLIST_FILE = "CMC Intranet/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
