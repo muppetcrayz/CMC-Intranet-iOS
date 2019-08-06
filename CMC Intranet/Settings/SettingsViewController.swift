@@ -33,7 +33,6 @@ class SettingsViewController: UIViewController {
             $0.register(UITableViewCell.self, forCellReuseIdentifier: previousNotificationCellID)
 
             $0.allowsSelection = false
-            
             navigationItem.rightBarButtonItem = UIBarButtonItem(
                 title: "Done",
                 style: .done,
@@ -56,7 +55,7 @@ extension SettingsViewController: UITableViewDataSource {
 
             switch indexPath.row {
             case 0:
-                cell.label.text = "All"
+                cell.label.text = settingsState.allNotificationSettingsState.name
                 cell.enabledSwitch.isOn = settingsState.allNotificationSettingsState.enabled
 
                 cell.switchHandler = { enabled in

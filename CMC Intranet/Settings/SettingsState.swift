@@ -23,7 +23,6 @@ struct SettingsState {
         NotificationSettingState(name: "Company News", enabled: false),
         NotificationSettingState(name: "Job Openings", enabled: false)
     ]
-
 }
 
 struct NotificationSettingState {
