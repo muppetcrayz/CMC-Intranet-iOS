@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class SettingsViewController: UIViewController {
     let notificationSettingCellID = "notificationSettingCellID"
@@ -32,7 +33,18 @@ class SettingsViewController: UIViewController {
             $0.register(UITableViewCell.self, forCellReuseIdentifier: previousNotificationCellID)
 
             $0.allowsSelection = false
+            
+            navigationItem.rightBarButtonItem = UIBarButtonItem(
+                title: "Done",
+                style: .done,
+                target: self,
+                action: #selector(donePressed)
+            )
         }
+    }
+
+    @objc func donePressed() {
+        dismiss(animated: true, completion: nil)
     }
 }
 
@@ -66,6 +78,22 @@ extension SettingsViewController: UITableViewDataSource {
                         completion: .none
                     )
                 }
+                
+                Messaging.messaging().subscribe(toTopic: "announcements") { error in
+                    print("Subscribed to announcements topic")
+                }
+            
+                Messaging.messaging().subscribe(toTopic: "documents") { error in
+                    print("Subscribed to documents topic")
+                }
+            
+                Messaging.messaging().subscribe(toTopic: "companynews") { error in
+                    print("Subscribed to companynews topic")
+                }
+            
+                Messaging.messaging().subscribe(toTopic: "jobopenings") { error in
+                    print("Subscribed to jobopenings topic")
+                }
 
             default:
                 let notificationState = settingsState.notificationSettingStates[indexPath.row - 1]
@@ -87,6 +115,31 @@ extension SettingsViewController: UITableViewDataSource {
                         },
                         completion: .none
                     )
+                    
+                    switch(indexPath.row - 1) {
+                    case 0:
+                        Messaging.messaging().subscribe(toTopic: "announcements") { error in
+                            print("Subscribed to announcements topic")
+                        }
+                        break
+                    case 1:
+                        Messaging.messaging().subscribe(toTopic: "documents") { error in
+                            print("Subscribed to documents topic")
+                        }
+                        break
+                    case 2:
+                        Messaging.messaging().subscribe(toTopic: "companynews") { error in
+                            print("Subscribed to companynews topic")
+                        }
+                        break
+                    case 3:
+                        Messaging.messaging().subscribe(toTopic: "jobopenings") { error in
+                            print("Subscribed to jobopenings topic")
+                        }
+                        break
+                    default:
+                        break
+                    }
                 }
             }
 
@@ -95,7 +148,7 @@ extension SettingsViewController: UITableViewDataSource {
         case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: previousNotificationCellID, for: indexPath)
 
-            cell.textLabel?.text = settingsState.previousNotifications.reversed()[indexPath.row]
+            cell.textLabel?.text = previousNotifications.reversed()[indexPath.row]
 
             return cell
 
@@ -110,7 +163,7 @@ extension SettingsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0: return settingsState.notificationSettingStates.count + 1
-        case 1: return settingsState.previousNotifications.count
+        case 1: return previousNotifications.count
         default: fatalError("code should not reach this point")
         }
     }

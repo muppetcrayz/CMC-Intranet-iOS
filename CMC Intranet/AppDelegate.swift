@@ -70,6 +70,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         // Note: This callback is fired at each app startup and whenever a new token is generated.
     }
 
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        if let aps = userInfo["aps"] as? NSDictionary {
+            if let alertMessage = aps["alert"] as? String {
+                previousNotifications.append(alertMessage)
+            }
+        }
+        completionHandler(UIBackgroundFetchResult.noData)
+    }
 
 }
 

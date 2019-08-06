@@ -6,6 +6,8 @@
 //  Copyright © 2019 sageconger. All rights reserved.
 //
 
+var previousNotifications: [String] = []
+
 var settingsState = SettingsState() {
     didSet {
         print(settingsState)
@@ -16,18 +18,12 @@ struct SettingsState {
     var allNotificationSettingsState = NotificationSettingState(name: "All", enabled: false)
 
     var notificationSettingStates = [
-        NotificationSettingState(name: "One", enabled: false),
-        NotificationSettingState(name: "Two", enabled: false),
-        NotificationSettingState(name: "Three", enabled: false)
+        NotificationSettingState(name: "Announcements", enabled: false),
+        NotificationSettingState(name: "Documents", enabled: false),
+        NotificationSettingState(name: "Company News", enabled: false),
+        NotificationSettingState(name: "Job Openings", enabled: false)
     ]
 
-    var previousNotifications = [
-        "First Notification",
-        "Second Notification",
-        "Third Notification",
-        "Fourth Notification",
-        "Fifth Notification"
-    ]
 }
 
 struct NotificationSettingState {

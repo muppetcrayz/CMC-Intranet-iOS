@@ -10,7 +10,7 @@ import UIKit
 import WebKit
 import SnapKit
 
-class ViewController: UIViewController, WKNavigationDelegate, WKUIDelegate {
+class ViewController: UIViewController, WKNavigationDelegate, WKUIDelegate, UIGestureRecognizerDelegate {
     
     let webView: WKWebView = {
         let preferences = WKPreferences()
@@ -40,10 +40,28 @@ class ViewController: UIViewController, WKNavigationDelegate, WKUIDelegate {
                 $0.bottom.equalTo(view)
             }
         }
+        
+        let swipeRight = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(self.respondToSwipeGesture))
+        swipeRight.edges = .left
+        swipeRight.delegate = self
+        self.view.addGestureRecognizer(swipeRight)
     }
 
     func webView(_ webView: WKWebView, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
         completionHandler(.useCredential, URLCredential(trust: challenge.protectionSpace.serverTrust!))
+    }
+    
+    @objc
+    func respondToSwipeGesture(_ recognizer: UIScreenEdgePanGestureRecognizer) {
+        if (recognizer.state == .ended) {
+            let settingsViewController = SettingsViewController()
+            let settingsNavigationController = UINavigationController(rootViewController: settingsViewController)
+            present(settingsNavigationController, animated: true, completion: nil)
+        }
+    }
+    
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
     }
 }
 
