@@ -38,7 +38,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         application.registerForRemoteNotifications()
 
         window = with(UIWindow(frame: UIScreen.main.bounds)) {
-            $0.rootViewController = ViewController()
+            let navigationController = UINavigationController(rootViewController: FeedTabBarController())
+            $0.rootViewController = navigationController
             $0.makeKeyAndVisible()
         }
 
