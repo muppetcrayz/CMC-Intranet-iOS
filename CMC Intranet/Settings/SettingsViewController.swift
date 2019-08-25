@@ -53,12 +53,14 @@ extension SettingsViewController: UITableViewDataSource {
         case 0:
             let cell = tableView.dequeueReusableCell(withIdentifier: notificationSettingCellID, for: indexPath) as! SettingsTableViewCell
 
+            cell.valueChangedActions = []
+
             switch indexPath.row {
             case 0:
                 cell.label.text = settingsState.allNotificationSettingsState.name
                 cell.enabledSwitch.isOn = settingsState.allNotificationSettingsState.enabled
 
-                cell.switchHandler = { enabled in
+                cell.valueChangedActions.append({ enabled in
                     settingsState.allNotificationSettingsState.enabled = enabled
                     settingsState.notificationSettingStates = settingsState.notificationSettingStates.map {
                         NotificationSettingState(
@@ -66,33 +68,7 @@ extension SettingsViewController: UITableViewDataSource {
                             enabled: enabled
                         )
                     }
-
-                    UIView.transition(
-                        with: tableView,
-                        duration: 0.33,
-                        options: [.transitionCrossDissolve, .allowUserInteraction],
-                        animations: {
-                            tableView.reloadData()
-                        },
-                        completion: .none
-                    )
-                }
-                
-                Messaging.messaging().subscribe(toTopic: "announcements") { error in
-                    print("Subscribed to announcements topic")
-                }
-            
-                Messaging.messaging().subscribe(toTopic: "documents") { error in
-                    print("Subscribed to documents topic")
-                }
-            
-                Messaging.messaging().subscribe(toTopic: "companynews") { error in
-                    print("Subscribed to companynews topic")
-                }
-            
-                Messaging.messaging().subscribe(toTopic: "jobopenings") { error in
-                    print("Subscribed to jobopenings topic")
-                }
+                })
 
             default:
                 let notificationState = settingsState.notificationSettingStates[indexPath.row - 1]
@@ -100,47 +76,56 @@ extension SettingsViewController: UITableViewDataSource {
                 cell.label.text = notificationState.name
                 cell.enabledSwitch.isOn = notificationState.enabled
 
-                cell.switchHandler = {
+                cell.valueChangedActions.append({
                     settingsState.notificationSettingStates[indexPath.row - 1].enabled = $0
 
                     settingsState.allNotificationSettingsState.enabled = settingsState.notificationSettingStates.allSatisfy { $0.enabled }
+                })
+            }
 
-                    UIView.transition(
-                        with: tableView,
-                        duration: 0.33,
-                        options: [.transitionCrossDissolve, .allowUserInteraction],
-                        animations: {
-                            tableView.reloadData()
-                        },
-                        completion: .none
-                    )
-                    
-                    switch(indexPath.row - 1) {
-                    case 0:
-                        Messaging.messaging().subscribe(toTopic: "announcements") { error in
-                            print("Subscribed to announcements topic")
+            cell.valueChangedActions.append({ _ in
+                UIView.transition(
+                    with: tableView,
+                    duration: 0.33,
+                    options: [.transitionCrossDissolve, .allowUserInteraction],
+                    animations: {
+                        tableView.reloadData()
+                },
+                    completion: .none
+                )
+            })
+
+            cell.valueChangedActions.append({ switchOn in
+                let allTopics: [String] = [
+                    "announcements",
+                    "documents",
+                    "companynews",
+                    "jobopenings"
+                ]
+
+                let topics: [String]
+
+                switch(indexPath.row) {
+                case 0:
+                    topics = allTopics
+
+                default:
+                    topics = [allTopics[indexPath.row - 1]]
+                }
+
+                topics.forEach { topic in
+                    if switchOn {
+                        Messaging.messaging().subscribe(toTopic: topic) { error in
+                            print("Subscribed to \(topic) topic")
                         }
-                        break
-                    case 1:
-                        Messaging.messaging().subscribe(toTopic: "documents") { error in
-                            print("Subscribed to documents topic")
+                    }
+                    else {
+                        Messaging.messaging().unsubscribe(fromTopic: topic) { error in
+                            print("Unsubscribed from \(topic) topic")
                         }
-                        break
-                    case 2:
-                        Messaging.messaging().subscribe(toTopic: "companynews") { error in
-                            print("Subscribed to companynews topic")
-                        }
-                        break
-                    case 3:
-                        Messaging.messaging().subscribe(toTopic: "jobopenings") { error in
-                            print("Subscribed to jobopenings topic")
-                        }
-                        break
-                    default:
-                        break
                     }
                 }
-            }
+            })
 
             return cell
 

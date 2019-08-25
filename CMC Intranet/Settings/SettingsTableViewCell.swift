@@ -16,7 +16,7 @@ class SettingsTableViewCell: UITableViewCell {
 
     let enabledSwitch = UISwitch()
 
-    var switchHandler: ((Bool) -> Void)?
+    var valueChangedActions: [(Bool) -> Void] = []
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -42,7 +42,7 @@ class SettingsTableViewCell: UITableViewCell {
             $0.addAction(for: .valueChanged) { [weak self] in
                 guard let `self` = self else { return }
 
-                self.switchHandler?(self.enabledSwitch.isOn)
+                self.valueChangedActions.forEach { $0(self.enabledSwitch.isOn) }
             }
         }
     }
