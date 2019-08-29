@@ -14,25 +14,32 @@ class FeedTabBarController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+//        bo7bLodFhEP#zMq)r%JmgWRC
 
-        let firstViewController = with(UIViewController()) {
-            $0.tabBarItem = UITabBarItem(title: "First", image: .none, tag: 0)
+        let firstViewController = with(WebPageViewController(urlString: "\(baseURLString)/announcement/")) {
+            $0.tabBarItem = UITabBarItem(title: "Announcements", image: .none, tag: 0)
+            $0.view.backgroundColor = .white
         }
 
-        let secondViewController = with(UIViewController()) {
-            $0.tabBarItem = UITabBarItem(title: "Second", image: .none, tag: 1)
+        let secondViewController = with(WebPageViewController(urlString: "\(baseURLString)/document/")) {
+            $0.tabBarItem = UITabBarItem(title: "Documents", image: .none, tag: 1)
+            $0.view.backgroundColor = .white
         }
 
-        let thirdViewController = with(UIViewController()) {
-            $0.tabBarItem = UITabBarItem(title: "Third", image: .none, tag: 2)
+        let thirdViewController = with(WebPageViewController(urlString: "\(baseURLString)/news/")) {
+            $0.tabBarItem = UITabBarItem(title: "Company News", image: .none, tag: 2)
+            $0.view.backgroundColor = .white
         }
 
-        let fourthViewController = with(UIViewController()) {
-            $0.tabBarItem = UITabBarItem(title: "Fourth", image: .none, tag: 3)
+        let fourthViewController = with(WebPageViewController(urlString: "\(baseURLString)/job-opening/")) {
+            $0.tabBarItem = UITabBarItem(title: "Job Openings", image: .none, tag: 3)
+            $0.view.backgroundColor = .white
         }
 
-        let fifthViewController = with(UIViewController()) {
-            $0.tabBarItem = UITabBarItem(title: "Fifth", image: .none, tag: 4)
+        let fifthViewController = with(WebPageViewController(urlString: "\(baseURLString)/events/")) {
+            $0.tabBarItem = UITabBarItem(title: "Calendar", image: .none, tag: 4)
+            $0.view.backgroundColor = .white
         }
 
         viewControllers = [

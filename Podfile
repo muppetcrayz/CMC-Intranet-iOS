@@ -9,4 +9,5 @@ target 'CMC Intranet' do
   pod 'Firebase/Analytics'
   pod 'SnapKit'
   pod 'Firebase/Messaging'
+  pod 'SwiftyJSON'
 end
