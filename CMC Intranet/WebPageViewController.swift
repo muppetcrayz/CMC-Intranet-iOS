@@ -10,31 +10,49 @@ import UIKit
 import WebKit
 
 class WebPageViewController: UIViewController, WKNavigationDelegate {
-    let url: URL
     
+    let url: String
+
     init(urlString: String) {
-        self.url = URL(string: urlString)!
+        self.url = urlString
         super.init(nibName: .none, bundle: .none)
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    let webView = UIWebView()
-    
     override func viewDidLoad() {
-        super.viewDidLoad()
+        var request = URLRequest(url: URL(string: baseURLString + "/wp-json/")!)
+        request.httpMethod = "GET"
         
-        with(webView) {
-            view.addSubview($0)
-            
-            $0.snp.makeConstraints {
-                $0.edges.equalTo(view.safeAreaLayoutGuide)
+        let session = URLSession.shared
+        let task = session.dataTask(with: request) { data, response, error in
+            if let data = data {
+                let json = try! JSONSerialization.jsonObject(with: data)
+                print(json)
             }
-            
-            let request = URLRequest(url: url)
-            $0.loadRequest(request)
         }
+        task.resume()
+        
     }
+    
+
+//
+//    let webView = UIWebView()
+//
+//    override func viewDidLoad() {
+//        super.viewDidLoad()
+//
+//        with(webView) {
+//            view.addSubview($0)
+//
+//            $0.snp.makeConstraints {
+//                $0.edges.equalTo(view.safeAreaLayoutGuide)
+//            }
+//
+//            let request = URLRequest(url: url)
+//            $0.loadRequest(request)
+//        }
+//    }
 }
