@@ -17,51 +17,54 @@ class FeedTabBarController: UITabBarController {
         
 //        bo7bLodFhEP#zMq)r%JmgWRC
 
-        let firstViewController = with(TitleAndReadViewController(stateTransformation: {
+        var newViewControllers: [UIViewController] = []
+        
+        newViewControllers.append(with(TitleAndReadViewController(stateTransformation: {
             $0.favorites.sorted(by: {
-                $0.value < $1.value
+                $0.value > $1.value
             })
             .map { $0.key }
         })) {
             $0.tabBarItem = UITabBarItem(title: "Favorites", image: UIImage(named: "tab_favorites"), tag: 0)
             $0.view.backgroundColor = .white
-        }
+        })
         
-        let secondViewController = with(TitleAndReadViewController(stateTransformation: {
+        newViewControllers.append(with(TitleAndReadViewController(stateTransformation: {
             $0.announcements
         })) {
             $0.tabBarItem = UITabBarItem(title: "Announcements", image: UIImage(named: "tab_announcements"), tag: 1)
             $0.view.backgroundColor = .white
-        }
+        })
 
-        let thirdViewController = with(WebPageViewController(urlString: "document")) {
+        newViewControllers.append(with(TitleAndReadViewController(stateTransformation: {
+            $0.documents
+        })) {
             $0.tabBarItem = UITabBarItem(title: "Documents", image: .none, tag: 2)
             $0.view.backgroundColor = .white
-        }
+        })
 
-        let fourthViewController = with(WebPageViewController(urlString: "news")) {
+        newViewControllers.append(with(TitleAndReadViewController(stateTransformation: {
+            $0.companyNews
+        })) {
             $0.tabBarItem = UITabBarItem(title: "Company News", image: .none, tag: 3)
             $0.view.backgroundColor = .white
-        }
+        })
 
-        let fifthViewController = with(WebPageViewController(urlString: "job-opening")) {
+        newViewControllers.append(with(TitleAndReadViewController(stateTransformation: {
+            $0.jobOpenings
+        })) {
             $0.tabBarItem = UITabBarItem(title: "Job Openings", image: .none, tag: 4)
             $0.view.backgroundColor = .white
-        }
+        })
 
-        let sixthViewController = with(WebPageViewController(urlString: "events")) {
+        newViewControllers.append(with(TitleAndReadViewController(stateTransformation: {
+            $0.calendarEvents
+        })) {
             $0.tabBarItem = UITabBarItem(title: "Calendar", image: .none, tag: 5)
             $0.view.backgroundColor = .white
-        }
-
-        viewControllers = [
-            firstViewController,
-            secondViewController,
-            thirdViewController,
-            fourthViewController,
-            fifthViewController,
-            sixthViewController
-        ]
+        })
+        
+        viewControllers = newViewControllers
 
         navigationItem.leftBarButtonItem = UIBarButtonItem(
             title: "Settings",
