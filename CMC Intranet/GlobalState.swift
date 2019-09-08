@@ -11,39 +11,66 @@ import Foundation
 var globalState = GlobalState()
 
 class GlobalState {
-    let announcements: [String] = [
+    var announcements: [String] = [
         "Announcement 1",
         "Announcement 2",
         "Announcement 3",
     ]
     
-    let documents: [String] = [
+    var documents: [String] = [
         "Document 1",
         "Document 2"
     ]
     
-    let companyNews: [String] = [
+    var companyNews: [String] = [
         "Company News 1",
         "Company News 2",
         "Company News 3"
     ]
     
-    let jobOpenings: [String] = [
+    var jobOpenings: [String] = [
         "Job Openings 1",
         "Job Openings 2",
         "Job Openings 3",
     ]
     
-    let calendarEvents: [String] = [
+    var calendarEvents: [String] = [
         "Calendar Event 1",
         "Calendar Event 2",
         "Calendar Event 3",
     ]
     
     var favorites: [String : Date] = [:]
+    
     var read: Set<String> = [
         "Announcement 2",
         "Document 1",
         "Company News 3"
     ]
+    
+    func load() {
+        with(UserDefaults.standard) {
+            announcements = $0.array(forKey: "announcements") as? [String] ?? []
+            documents = $0.array(forKey: "documents") as? [String] ?? []
+            companyNews = $0.array(forKey: "companyNews") as? [String] ?? []
+            jobOpenings = $0.array(forKey: "jobOpenings") as? [String] ?? []
+            calendarEvents = $0.array(forKey: "calendarEvents") as? [String] ?? []
+            
+            favorites = $0.dictionary(forKey: "favorites") as? [String : Date] ?? [:]
+            read = Set($0.array(forKey: "read") as? [String] ?? [])
+        }
+    }
+    
+    func save() {
+        with(UserDefaults.standard) {
+            $0.set(announcements, forKey: "announcements")
+            $0.set(documents, forKey: "documents")
+            $0.set(companyNews, forKey: "companyNews")
+            $0.set(jobOpenings, forKey: "jobOpenings")
+            $0.set(calendarEvents, forKey: "calendarEvents")
+            
+            $0.set(favorites, forKey: "favorites")
+            $0.set(Array(read), forKey: "read")
+        }
+    }
 }
