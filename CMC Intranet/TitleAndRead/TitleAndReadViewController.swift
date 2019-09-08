@@ -9,13 +9,13 @@
 import UIKit
 
 class TitleAndReadViewController: UIViewController {
-    let globalStateSelector: (GlobalState) -> [TitleAndReadViewModel]
+    let globalStateSelector: (GlobalState) -> [String]
     
-    var specificTitleAndReadViewModels: [TitleAndReadViewModel] {
+    var specificTitleAndReadViewModels: [String] {
         return globalStateSelector(globalState)
     }
     
-    init(globalStateSelector: @escaping (GlobalState) -> [TitleAndReadViewModel]) {
+    init(globalStateSelector: @escaping (GlobalState) -> [String]) {
         self.globalStateSelector = globalStateSelector
         super.init(nibName: .none, bundle: .none)
     }
@@ -62,10 +62,10 @@ extension TitleAndReadViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellID", for: indexPath) as! TitleAndReadTableViewCell
         
-        let viewModel = specificTitleAndReadViewModels[indexPath.row]
+        let title = specificTitleAndReadViewModels[indexPath.row]
         
-        cell.dotImageView.isHidden = viewModel.read
-        cell.titleLabel.text = viewModel.title
+        cell.dotImageView.isHidden = globalState.read.contains(title)
+        cell.titleLabel.text = title
         
         return cell
     }
@@ -73,21 +73,40 @@ extension TitleAndReadViewController: UITableViewDataSource {
 
 extension TitleAndReadViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let viewModel = specificTitleAndReadViewModels[indexPath.row]
-        let isFavorite = globalState.favorites.keys.contains(viewModel)
+        let title = specificTitleAndReadViewModels[indexPath.row]
+        let isFavorite = globalState.favorites.keys.contains(title)
         
         let action = UIContextualAction(style: .normal, title: isFavorite ? "Remove from Favorites" : "Add to Favorites", handler: { action, view, completionHandler in
             if isFavorite {
-                globalState.favorites.removeValue(forKey: viewModel)
+                globalState.favorites.removeValue(forKey: title)
             }
             else {
-                globalState.favorites[viewModel] = Date()
+                globalState.favorites[title] = Date()
             }
             tableView.reloadSections(IndexSet(integer: 0), with: .fade)
             completionHandler(true)
         })
-        action.backgroundColor = UIColor(red: (204 / 255), green: 0, blue: (119 / 255), alpha: 1.0)
+        action.backgroundColor = UIColor(red: (204 / 255), green: 0, blue: (119 / 255), alpha: 1)
         action.image = UIImage(named: isFavorite ? "closedHeart" : "openHeart")
+        
+        return UISwipeActionsConfiguration(actions: [action])
+    }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let title = specificTitleAndReadViewModels[indexPath.row]
+        let isRead = globalState.read.contains(title)
+        
+        let action = UIContextualAction(style: .normal, title: isRead ? "Mark as Unread" : "Mark as Read", handler: { action, view, completionHandler in
+            if isRead {
+                globalState.read.remove(title)
+            }
+            else {
+                globalState.read.insert(title)
+            }
+            tableView.reloadSections(IndexSet(integer: 0), with: .fade)
+            completionHandler(true)
+        })
+        action.backgroundColor = UIColor(red: 0, green: (119 / 255), blue: (204 / 255), alpha: 1)
         
         return UISwipeActionsConfiguration(actions: [action])
     }

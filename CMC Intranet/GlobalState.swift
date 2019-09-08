@@ -11,34 +11,39 @@ import Foundation
 var globalState = GlobalState()
 
 class GlobalState {
-    let announcements: [TitleAndReadViewModel] = [
-        .init(read: false, title: "Announcement 1"),
-        .init(read: true, title: "Announcement 2"),
-        .init(read: false, title: "Announcement 3"),
+    let announcements: [String] = [
+        "Announcement 1",
+        "Announcement 2",
+        "Announcement 3",
     ]
     
-    let documents: [TitleAndReadViewModel] = [
-        .init(read: true, title: "Document 1"),
-        .init(read: false, title: "Document 2")
+    let documents: [String] = [
+        "Document 1",
+        "Document 2"
     ]
     
-    let companyNews: [TitleAndReadViewModel] = [
-        .init(read: false, title: "Company News 1"),
-        .init(read: false, title: "Company News 2"),
-        .init(read: true, title: "Company News 3"),
+    let companyNews: [String] = [
+        "Company News 1",
+        "Company News 2",
+        "Company News 3"
     ]
     
-    let jobOpenings: [TitleAndReadViewModel] = [
-        .init(read: true, title: "Job Openings 1"),
-        .init(read: true, title: "Job Openings 2"),
-        .init(read: false, title: "Job Openings 3"),
+    let jobOpenings: [String] = [
+        "Job Openings 1",
+        "Job Openings 2",
+        "Job Openings 3",
     ]
     
-    let calendarEvents: [TitleAndReadViewModel] = [
-        .init(read: false, title: "Calendar Event 1"),
-        .init(read: true, title: "Calendar Event 2"),
-        .init(read: true, title: "Calendar Event 3"),
+    let calendarEvents: [String] = [
+        "Calendar Event 1",
+        "Calendar Event 2",
+        "Calendar Event 3",
     ]
     
-    var favorites: [TitleAndReadViewModel : Date] = [:]
+    var favorites: [String : Date] = [:]
+    var read: Set<String> = [
+        "Announcement 2",
+        "Document 1",
+        "Company News 3"
+    ]
 }
