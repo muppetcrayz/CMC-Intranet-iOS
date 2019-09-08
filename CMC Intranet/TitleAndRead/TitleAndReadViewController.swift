@@ -9,10 +9,14 @@
 import UIKit
 
 class TitleAndReadViewController: UIViewController {
-    let stateTransformation: (State) -> [TitleAndReadViewModel]
+    let globalStateSelector: (GlobalState) -> [TitleAndReadViewModel]
     
-    init(stateTransformation: @escaping (State) -> [TitleAndReadViewModel]) {
-        self.stateTransformation = stateTransformation
+    var specificTitleAndReadViewModels: [TitleAndReadViewModel] {
+        return globalStateSelector(globalState)
+    }
+    
+    init(globalStateSelector: @escaping (GlobalState) -> [TitleAndReadViewModel]) {
+        self.globalStateSelector = globalStateSelector
         super.init(nibName: .none, bundle: .none)
     }
     
@@ -52,13 +56,13 @@ extension TitleAndReadViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return stateTransformation(state).count
+        return specificTitleAndReadViewModels.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellID", for: indexPath) as! TitleAndReadTableViewCell
         
-        let viewModel = stateTransformation(state)[indexPath.row]
+        let viewModel = specificTitleAndReadViewModels[indexPath.row]
         
         cell.dotImageView.isHidden = viewModel.read
         cell.titleLabel.text = viewModel.title
@@ -69,15 +73,15 @@ extension TitleAndReadViewController: UITableViewDataSource {
 
 extension TitleAndReadViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let viewModel = stateTransformation(state)[indexPath.row]
-        let isFavorite = state.favorites.keys.contains(viewModel)
+        let viewModel = specificTitleAndReadViewModels[indexPath.row]
+        let isFavorite = globalState.favorites.keys.contains(viewModel)
         
         let action = UIContextualAction(style: .normal, title: isFavorite ? "Remove from Favorites" : "Add to Favorites", handler: { action, view, completionHandler in
             if isFavorite {
-                state.favorites.removeValue(forKey: viewModel)
+                globalState.favorites.removeValue(forKey: viewModel)
             }
             else {
-                state.favorites[viewModel] = Date()
+                globalState.favorites[viewModel] = Date()
             }
             tableView.reloadSections(IndexSet(integer: 0), with: .fade)
             completionHandler(true)

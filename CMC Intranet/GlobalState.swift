@@ -1,5 +1,5 @@
 //
-//  State.swift
+//  GlobalState.swift
 //  CMC Intranet
 //
 //  Created by Sage Conger on 9/8/19.
@@ -8,9 +8,9 @@
 
 import Foundation
 
-var state = State()
+var globalState = GlobalState()
 
-class State {
+class GlobalState {
     let announcements: [TitleAndReadViewModel] = [
         .init(read: false, title: "Announcement 1"),
         .init(read: true, title: "Announcement 2"),

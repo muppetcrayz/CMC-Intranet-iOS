@@ -19,7 +19,7 @@
 		08F0C07A23258C5400022EFC /* TitleAndReadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F0C07923258C5400022EFC /* TitleAndReadViewController.swift */; };
 		08F0C07E2325999800022EFC /* TitleAndReadTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F0C07D2325999800022EFC /* TitleAndReadTableViewCell.swift */; };
 		08F0C080232599D000022EFC /* TitleAndReadViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F0C07F232599D000022EFC /* TitleAndReadViewModel.swift */; };
-		08F0C082232599E300022EFC /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F0C081232599E300022EFC /* State.swift */; };
+		08F0C082232599E300022EFC /* GlobalState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F0C081232599E300022EFC /* GlobalState.swift */; };
 		37D449F322F8F54900101581 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D449F222F8F54900101581 /* SettingsViewController.swift */; };
 		37D449F522F9030900101581 /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D449F422F9030900101581 /* SettingsTableViewCell.swift */; };
 		37D449F722F9035F00101581 /* SettingsState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D449F622F9035F00101581 /* SettingsState.swift */; };
@@ -42,7 +42,7 @@
 		08F0C07923258C5400022EFC /* TitleAndReadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleAndReadViewController.swift; sourceTree = "<group>"; };
 		08F0C07D2325999800022EFC /* TitleAndReadTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleAndReadTableViewCell.swift; sourceTree = "<group>"; };
 		08F0C07F232599D000022EFC /* TitleAndReadViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleAndReadViewModel.swift; sourceTree = "<group>"; };
-		08F0C081232599E300022EFC /* State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
+		08F0C081232599E300022EFC /* GlobalState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalState.swift; sourceTree = "<group>"; };
 		2B1DC32B959507C85221C574 /* Pods-CMC Intranet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CMC Intranet.release.xcconfig"; path = "Target Support Files/Pods-CMC Intranet/Pods-CMC Intranet.release.xcconfig"; sourceTree = "<group>"; };
 		37D449F222F8F54900101581 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		37D449F422F9030900101581 /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
@@ -95,13 +95,11 @@
 				086D805322F6177100B76DCD /* CMC Intranet.entitlements */,
 				08851E4E231617140075DF42 /* Constants.swift */,
 				0853C19822E61E6A0086F002 /* AppDelegate.swift */,
-				08F0C081232599E300022EFC /* State.swift */,
+				08F0C081232599E300022EFC /* GlobalState.swift */,
 				083FB2D42315F269006845E3 /* LoginViewController.swift */,
 				0853C19A22E61E6A0086F002 /* FeedTabBarController.swift */,
 				083FB2D623160B1F006845E3 /* WebPageViewController.swift */,
-				08F0C07D2325999800022EFC /* TitleAndReadTableViewCell.swift */,
-				08F0C07923258C5400022EFC /* TitleAndReadViewController.swift */,
-				08F0C07F232599D000022EFC /* TitleAndReadViewModel.swift */,
+				08F0C0832325B59000022EFC /* TitleAndRead */,
 				37D449F822F9066D00101581 /* Settings */,
 				0853C1AA22E61EF30086F002 /* Extensions.swift */,
 				0853C19F22E61E6B0086F002 /* Assets.xcassets */,
@@ -110,6 +108,16 @@
 				0853C1AE22E622120086F002 /* GoogleService-Info.plist */,
 			);
 			path = "CMC Intranet";
+			sourceTree = "<group>";
+		};
+		08F0C0832325B59000022EFC /* TitleAndRead */ = {
+			isa = PBXGroup;
+			children = (
+				08F0C07D2325999800022EFC /* TitleAndReadTableViewCell.swift */,
+				08F0C07923258C5400022EFC /* TitleAndReadViewController.swift */,
+				08F0C07F232599D000022EFC /* TitleAndReadViewModel.swift */,
+			);
+			path = TitleAndRead;
 			sourceTree = "<group>";
 		};
 		37D449F822F9066D00101581 /* Settings */ = {
@@ -259,7 +267,7 @@
 				08F0C07E2325999800022EFC /* TitleAndReadTableViewCell.swift in Sources */,
 				083FB2D52315F269006845E3 /* LoginViewController.swift in Sources */,
 				0853C19B22E61E6A0086F002 /* FeedTabBarController.swift in Sources */,
-				08F0C082232599E300022EFC /* State.swift in Sources */,
+				08F0C082232599E300022EFC /* GlobalState.swift in Sources */,
 				0853C1AB22E61EF30086F002 /* Extensions.swift in Sources */,
 				0853C19922E61E6A0086F002 /* AppDelegate.swift in Sources */,
 				37D449F722F9035F00101581 /* SettingsState.swift in Sources */,
