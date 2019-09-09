@@ -26,47 +26,41 @@ class FeedTabBarController: UITabBarController {
             .map { $0.key }
         })) {
             $0.tabBarItem = UITabBarItem(title: "Favorites", image: UIImage(named: "tab_favorites"), tag: 0)
-            $0.view.backgroundColor = .white
         })
         
         newViewControllers.append(with(TitleAndReadViewController(globalStateSelector: {
             $0.announcements
         })) {
             $0.tabBarItem = UITabBarItem(title: "Announcements", image: UIImage(named: "tab_announcements"), tag: 1)
-            $0.view.backgroundColor = .white
         })
 
         newViewControllers.append(with(TitleAndReadViewController(globalStateSelector: {
             $0.documents
         })) {
-            $0.tabBarItem = UITabBarItem(title: "Documents", image: .none, tag: 2)
-            $0.view.backgroundColor = .white
+            $0.tabBarItem = UITabBarItem(title: "Documents", image: UIImage(named: "tab_documents"), tag: 2)
         })
 
         newViewControllers.append(with(TitleAndReadViewController(globalStateSelector: {
             $0.companyNews
         })) {
-            $0.tabBarItem = UITabBarItem(title: "Company News", image: .none, tag: 3)
-            $0.view.backgroundColor = .white
+            $0.tabBarItem = UITabBarItem(title: "Company News", image: UIImage(named: "tab_company"), tag: 3)
         })
 
         newViewControllers.append(with(TitleAndReadViewController(globalStateSelector: {
             $0.jobOpenings
         })) {
-            $0.tabBarItem = UITabBarItem(title: "Job Openings", image: .none, tag: 4)
-            $0.view.backgroundColor = .white
+            $0.tabBarItem = UITabBarItem(title: "Job Openings", image: UIImage(named: "tab_jobs"), tag: 4)
         })
 
         newViewControllers.append(with(TitleAndReadViewController(globalStateSelector: {
             $0.calendarEvents
         })) {
-            $0.tabBarItem = UITabBarItem(title: "Calendar", image: .none, tag: 5)
-            $0.view.backgroundColor = .white
+            $0.tabBarItem = UITabBarItem(title: "Calendar", image: UIImage(named: "tab_calendar"), tag: 5)
         })
         
         viewControllers = newViewControllers
 
-        navigationItem.leftBarButtonItem = UIBarButtonItem(
+        navigationItem.rightBarButtonItem = UIBarButtonItem(
             title: "Settings",
             style: .plain,
             target: self,

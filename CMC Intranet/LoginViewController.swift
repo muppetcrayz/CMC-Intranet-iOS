@@ -1,5 +1,5 @@
 //
-//  WebPageViewController.swift
+//  LoginViewController.swift
 //  CMC Intranet
 //
 //  Created by Sage Conger on 8/27/19.

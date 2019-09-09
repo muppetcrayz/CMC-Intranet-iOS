@@ -9,13 +9,13 @@
 import UIKit
 
 class TitleAndReadViewController: UIViewController {
-    let globalStateSelector: (GlobalState) -> [String]
+    let globalStateSelector: (GlobalState) -> [Post]
     
-    var specificTitleAndReadViewModels: [String] {
+    var specificTitleAndReadViewModels: [Post] {
         return globalStateSelector(globalState)
     }
     
-    init(globalStateSelector: @escaping (GlobalState) -> [String]) {
+    init(globalStateSelector: @escaping (GlobalState) -> [Post]) {
         self.globalStateSelector = globalStateSelector
         super.init(nibName: .none, bundle: .none)
     }
@@ -29,6 +29,8 @@ class TitleAndReadViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.backgroundColor = .white
+        
         with(tableView) {
             $0.dataSource = self
             $0.delegate = self
@@ -38,7 +40,7 @@ class TitleAndReadViewController: UIViewController {
             view.addSubview($0)
             
             $0.snp.makeConstraints {
-                $0.edges.equalToSuperview()
+                $0.edges.equalTo(view.safeAreaLayoutGuide)
             }
         }
     }
@@ -62,10 +64,10 @@ extension TitleAndReadViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellID", for: indexPath) as! TitleAndReadTableViewCell
         
-        let title = specificTitleAndReadViewModels[indexPath.row]
+        let viewModel = specificTitleAndReadViewModels[indexPath.row]
         
-        cell.dotImageView.isHidden = globalState.read.contains(title)
-        cell.titleLabel.text = title
+        cell.dotImageView.isHidden = globalState.read.contains(viewModel)
+        cell.titleLabel.text = viewModel.title
         
         return cell
     }
@@ -73,15 +75,15 @@ extension TitleAndReadViewController: UITableViewDataSource {
 
 extension TitleAndReadViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let title = specificTitleAndReadViewModels[indexPath.row]
-        let isFavorite = globalState.favorites.keys.contains(title)
+        let viewModel = specificTitleAndReadViewModels[indexPath.row]
+        let isFavorite = globalState.favorites.keys.contains(viewModel)
         
         let action = UIContextualAction(style: .normal, title: isFavorite ? "Remove from Favorites" : "Add to Favorites", handler: { action, view, completionHandler in
             if isFavorite {
-                globalState.favorites.removeValue(forKey: title)
+                globalState.favorites.removeValue(forKey: viewModel)
             }
             else {
-                globalState.favorites[title] = Date()
+                globalState.favorites[viewModel] = Date()
             }
             tableView.reloadSections(IndexSet(integer: 0), with: .fade)
             completionHandler(true)
@@ -109,5 +111,10 @@ extension TitleAndReadViewController: UITableViewDelegate {
         action.backgroundColor = UIColor(red: 0, green: (119 / 255), blue: (204 / 255), alpha: 1)
         
         return UISwipeActionsConfiguration(actions: [action])
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        globalState.read.insert(specificTitleAndReadViewModels[indexPath.row])
+        navigationController?.pushViewController(DetailViewController(globalStateSelector: { _ in self.globalStateSelector(globalState)[indexPath.row] }), animated: true)
     }
 }
