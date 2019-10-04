@@ -133,6 +133,8 @@ class GlobalState {
                 }
                 
                 print(json)
+
+                NotificationCenter.default.post(name: NSNotification.Name("newData"), object: self)
             }
         }
         task.resume()

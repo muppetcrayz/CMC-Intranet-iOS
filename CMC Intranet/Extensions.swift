@@ -7,6 +7,45 @@
 //
 
 import UIKit
+import SwiftMessages
+
+extension UserDefaults {
+    func contains(key: String) -> Bool {
+        return UserDefaults.standard.object(forKey: key) != nil
+    }
+}
+
+extension MessageView {
+        static func success(title: String, body: String) -> MessageView {
+            with(MessageView.viewFromNib(layout: .cardView)) {
+                    $0.configureTheme(.success)
+
+                    $0.applyStyling()
+
+                    $0.configureContent(title: "\(title) Successful", body: body, iconText: "✓")
+        }
+    }
+
+    static func error(_ title: String, body: String) -> MessageView {
+        with(MessageView.viewFromNib(layout: .cardView)) {
+            $0.configureTheme(.error)
+
+            $0.applyStyling()
+
+            $0.configureContent(title: "\(title) Error", body: body, iconText: "!")
+        }
+    }
+
+    final func applyStyling() {
+        configureDropShadow()
+
+        layoutMarginAdditions = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
+
+        button?.isHidden = true
+
+        (backgroundView as? CornerRoundingView)?.cornerRadius = 10
+    }
+}
 
 extension String {
     var htmlDecoded: String {

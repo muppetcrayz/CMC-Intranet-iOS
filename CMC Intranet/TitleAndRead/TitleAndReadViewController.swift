@@ -28,6 +28,8 @@ class TitleAndReadViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        NotificationCenter.default.addObserver(self, selector: #selector(reload), name: NSNotification.Name("newData"), object: nil)
         
         self.tabBarController?.navigationItem.hidesBackButton = true
         
@@ -49,7 +51,13 @@ class TitleAndReadViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        tableView.reloadData()
+        reload()
+    }
+
+    @objc func reload() {
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
     }
 }
 

@@ -44,12 +44,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
         application.registerForRemoteNotifications()
 
-        window = with(UIWindow(frame: UIScreen.main.bounds)) {
-            let navigationController = UINavigationController(rootViewController: LoginViewController(urlString: baseURLString + "/wp-login.php?redirect_to=http%3A%2F%2Fintranet.cmcmmi.com"))
-            // let navigationController = UINavigationController(rootViewController: FeedTabBarController())
-            $0.rootViewController = navigationController
-            $0.makeKeyAndVisible()
-        }
+        window = UIWindow(frame: UIScreen.main.bounds)
+        var navigationController: UINavigationController
+        if (UserDefaults.standard.contains(key: "user_id")) {
+    navigationController = UINavigationController(rootViewController: FeedTabBarController())
+}
+else {
+            navigationController = UINavigationController(rootViewController: LoginViewController())
+        }
+        window?.rootViewController = navigationController
+        window?.makeKeyAndVisible()
 
         return true
     }
