@@ -20,20 +20,32 @@ class FeedTabBarController: UITabBarController {
         var newViewControllers: [UIViewController] = []
         
         newViewControllers.append(with(TitleAndReadViewController(globalStateSelector: {
-            $0.favorites.sorted(by: {
-                $0.value > $1.value
-            })
-            .map { $0.key }
-        })) {
-            $0.tabBarItem = UITabBarItem(title: "Favorites", image: UIImage(named: "tab_favorites"), tag: 0)
-        })
-        
-        newViewControllers.append(with(TitleAndReadViewController(globalStateSelector: {
             $0.announcements
         })) {
             $0.tabBarItem = UITabBarItem(title: "Announcements", image: UIImage(named: "tab_announcements"), tag: 1)
         })
+        
+        newViewControllers.append(with(TitleAndReadViewController(globalStateSelector: {
+            $0.companyNews
+        })) {
+            $0.tabBarItem = UITabBarItem(title: "Company News", image: UIImage(named: "tab_company"), tag: 3)
+        })
+        
+        newViewControllers.append(with(TitleAndReadViewController(globalStateSelector: {
+            $0.calendarEvents
+        })) {
+            $0.tabBarItem = UITabBarItem(title: "Calendar", image: UIImage(named: "tab_calendar"), tag: 5)
+        })
 
+        newViewControllers.append(with(TitleAndReadViewController(globalStateSelector: {
+            $0.favorites.sorted(by: {
+                $0.value > $1.value
+            })
+                .map { $0.key }
+        })) {
+            $0.tabBarItem = UITabBarItem(title: "Favorites", image: UIImage(named: "tab_favorites"), tag: 0)
+        })
+        
         newViewControllers.append(with(TitleAndReadViewController(globalStateSelector: {
             $0.documents
         })) {
@@ -41,21 +53,9 @@ class FeedTabBarController: UITabBarController {
         })
 
         newViewControllers.append(with(TitleAndReadViewController(globalStateSelector: {
-            $0.companyNews
-        })) {
-            $0.tabBarItem = UITabBarItem(title: "Company News", image: UIImage(named: "tab_company"), tag: 3)
-        })
-
-        newViewControllers.append(with(TitleAndReadViewController(globalStateSelector: {
             $0.jobOpenings
         })) {
             $0.tabBarItem = UITabBarItem(title: "Job Openings", image: UIImage(named: "tab_jobs"), tag: 4)
-        })
-
-        newViewControllers.append(with(TitleAndReadViewController(globalStateSelector: {
-            $0.calendarEvents
-        })) {
-            $0.tabBarItem = UITabBarItem(title: "Calendar", image: UIImage(named: "tab_calendar"), tag: 5)
         })
         
         viewControllers = newViewControllers

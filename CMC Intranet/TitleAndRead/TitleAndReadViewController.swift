@@ -29,6 +29,8 @@ class TitleAndReadViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.tabBarController?.navigationItem.hidesBackButton = true
+        
         view.backgroundColor = .white
         
         with(tableView) {
@@ -47,7 +49,6 @@ class TitleAndReadViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
         tableView.reloadData()
     }
 }
