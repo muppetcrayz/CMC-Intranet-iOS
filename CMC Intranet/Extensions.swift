@@ -8,6 +8,12 @@
 
 import UIKit
 
+extension UserDefaults {
+    func contains(key: String) -> Bool {
+        return UserDefaults.standard.object(forKey: key) != nil
+    }
+}
+
 public extension DispatchQueue {
     
     private static var _onceTracker = [String]()

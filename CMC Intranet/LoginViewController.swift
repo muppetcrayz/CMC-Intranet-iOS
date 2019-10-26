@@ -41,10 +41,18 @@ class LoginViewController: UIViewController, UIWebViewDelegate {
     }
     
     func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebView.NavigationType) -> Bool {
-        print("***", request.url)
+        if let url = request.url {
+            print("***", url)
+        }
+        
         if request.url?.lastPathComponent == "/"
         {
             navigationController?.pushViewController(FeedTabBarController(), animated: true)
+            UserDefaults.standard.set(true, forKey: "loggedIn")
+            let cookieJar: HTTPCookieStorage = HTTPCookieStorage.shared
+            let data: Data = NSKeyedArchiver.archivedData(withRootObject: cookieJar.cookies)
+            let ud: UserDefaults = UserDefaults.standard
+            ud.set(data, forKey: "cookie")
         }
         
         return true

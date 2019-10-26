@@ -42,6 +42,31 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             $0.rootViewController = navigationController
             $0.makeKeyAndVisible()
         }
+        
+        window = UIWindow(frame: UIScreen.main.bounds)
+        var navigationController: UINavigationController
+        
+        let data: Data? = UserDefaults.standard.object(forKey: "cookie") as? Data
+        if let cookie = data {
+            let datas: NSArray? = NSKeyedUnarchiver.unarchiveObject(with: cookie) as? NSArray
+            if let cookies = datas {
+                for c in cookies as! [HTTPCookie] {
+                    HTTPCookieStorage.shared.setCookie(c)
+                }
+            }
+        }
+        
+        if (UserDefaults.standard.bool(forKey: "loggedIn")) {
+            navigationController = UINavigationController(rootViewController: FeedTabBarController())
+        }
+        else {
+            navigationController = UINavigationController(rootViewController:
+                LoginViewController(urlString: baseURLString + "/wp-login.php?redirect_to=http%3A%2F%2Fintranet.cmcmmi.com"
+                )
+            )
+        }
+        window?.rootViewController = navigationController
+        window?.makeKeyAndVisible()
 
         return true
     }
