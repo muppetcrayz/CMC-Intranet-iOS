@@ -36,15 +36,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         }
         
         application.registerForRemoteNotifications()
-
-        window = with(UIWindow(frame: UIScreen.main.bounds)) {
-            let navigationController = UINavigationController(rootViewController: LoginViewController(urlString: baseURLString + "/wp-login.php?redirect_to=http%3A%2F%2Fintranet.cmcmmi.com"))
-            $0.rootViewController = navigationController
-            $0.makeKeyAndVisible()
-        }
         
         window = UIWindow(frame: UIScreen.main.bounds)
-        var navigationController: UINavigationController
         
         let data: Data? = UserDefaults.standard.object(forKey: "cookie") as? Data
         if let cookie = data {
@@ -57,15 +50,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         }
         
         if (UserDefaults.standard.bool(forKey: "loggedIn")) {
-            navigationController = UINavigationController(rootViewController: FeedTabBarController())
+            window?.rootViewController = FeedTabBarController()
         }
         else {
-            navigationController = UINavigationController(rootViewController:
-                LoginViewController(urlString: baseURLString + "/wp-login.php?redirect_to=http%3A%2F%2Fintranet.cmcmmi.com"
-                )
-            )
+            window?.rootViewController = LoginViewController(urlString: baseURLString + "/wp-login.php?redirect_to=http%3A%2F%2Fintranet.cmcmmi.com")
         }
-        window?.rootViewController = navigationController
+        
         window?.makeKeyAndVisible()
 
         return true
@@ -101,15 +91,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         // TODO: If necessary send token to application server.
         // Note: This callback is fired at each app startup and whenever a new token is generated.
     }
-
-    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-        if let aps = userInfo["aps"] as? NSDictionary {
-            if let alertMessage = aps["alert"] as? String {
-                previousNotifications.append(alertMessage)
-            }
-        }
-        completionHandler(UIBackgroundFetchResult.noData)
-    }
-
 }
 

@@ -49,18 +49,5 @@ class FeedTabBarController: UITabBarController {
             fourthViewController,
             fifthViewController
         ]
-
-        navigationItem.leftBarButtonItem = UIBarButtonItem(
-            title: "Settings",
-            style: .plain,
-            target: self,
-            action: #selector(openSettings)
-        )
-    }
-
-    @objc func openSettings() {
-        let settingsViewController = SettingsViewController()
-        let settingsNavigationController = UINavigationController(rootViewController: settingsViewController)
-        present(settingsNavigationController, animated: true, completion: nil)
     }
 }

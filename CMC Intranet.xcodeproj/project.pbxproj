@@ -16,9 +16,6 @@
 		0853C1AB22E61EF30086F002 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0853C1AA22E61EF30086F002 /* Extensions.swift */; };
 		0853C1AF22E622120086F002 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0853C1AE22E622120086F002 /* GoogleService-Info.plist */; };
 		08851E4F231617140075DF42 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08851E4E231617140075DF42 /* Constants.swift */; };
-		37D449F322F8F54900101581 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D449F222F8F54900101581 /* SettingsViewController.swift */; };
-		37D449F522F9030900101581 /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D449F422F9030900101581 /* SettingsTableViewCell.swift */; };
-		37D449F722F9035F00101581 /* SettingsState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D449F622F9035F00101581 /* SettingsState.swift */; };
 		45B9199F1C49AD8889E5D8D7 /* Pods_CMC_Intranet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBFDCCD3B327D6EE067C776C /* Pods_CMC_Intranet.framework */; };
 /* End PBXBuildFile section */
 
@@ -36,9 +33,6 @@
 		086D805322F6177100B76DCD /* CMC Intranet.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "CMC Intranet.entitlements"; sourceTree = "<group>"; };
 		08851E4E231617140075DF42 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		2B1DC32B959507C85221C574 /* Pods-CMC Intranet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CMC Intranet.release.xcconfig"; path = "Target Support Files/Pods-CMC Intranet/Pods-CMC Intranet.release.xcconfig"; sourceTree = "<group>"; };
-		37D449F222F8F54900101581 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
-		37D449F422F9030900101581 /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
-		37D449F622F9035F00101581 /* SettingsState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsState.swift; sourceTree = "<group>"; };
 		BE37B41DB14A2258616E0BE3 /* Pods-CMC Intranet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CMC Intranet.debug.xcconfig"; path = "Target Support Files/Pods-CMC Intranet/Pods-CMC Intranet.debug.xcconfig"; sourceTree = "<group>"; };
 		FBFDCCD3B327D6EE067C776C /* Pods_CMC_Intranet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CMC_Intranet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -90,7 +84,6 @@
 				083FB2D42315F269006845E3 /* LoginViewController.swift */,
 				0853C19A22E61E6A0086F002 /* FeedTabBarController.swift */,
 				083FB2D623160B1F006845E3 /* WebPageViewController.swift */,
-				37D449F822F9066D00101581 /* Settings */,
 				0853C1AA22E61EF30086F002 /* Extensions.swift */,
 				0853C19F22E61E6B0086F002 /* Assets.xcassets */,
 				0853C1A122E61E6B0086F002 /* LaunchScreen.storyboard */,
@@ -98,16 +91,6 @@
 				0853C1AE22E622120086F002 /* GoogleService-Info.plist */,
 			);
 			path = "CMC Intranet";
-			sourceTree = "<group>";
-		};
-		37D449F822F9066D00101581 /* Settings */ = {
-			isa = PBXGroup;
-			children = (
-				37D449F222F8F54900101581 /* SettingsViewController.swift */,
-				37D449F422F9030900101581 /* SettingsTableViewCell.swift */,
-				37D449F622F9035F00101581 /* SettingsState.swift */,
-			);
-			path = Settings;
 			sourceTree = "<group>";
 		};
 		B87FF971D56B3F1B656F02AA /* Pods */ = {
@@ -247,9 +230,6 @@
 				0853C19B22E61E6A0086F002 /* FeedTabBarController.swift in Sources */,
 				0853C1AB22E61EF30086F002 /* Extensions.swift in Sources */,
 				0853C19922E61E6A0086F002 /* AppDelegate.swift in Sources */,
-				37D449F722F9035F00101581 /* SettingsState.swift in Sources */,
-				37D449F522F9030900101581 /* SettingsTableViewCell.swift in Sources */,
-				37D449F322F8F54900101581 /* SettingsViewController.swift in Sources */,
 				08851E4F231617140075DF42 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

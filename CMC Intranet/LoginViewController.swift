@@ -47,7 +47,10 @@ class LoginViewController: UIViewController, UIWebViewDelegate {
         
         if request.url?.lastPathComponent == "/"
         {
-            navigationController?.pushViewController(FeedTabBarController(), animated: true)
+            let feedTabBarController = FeedTabBarController()
+            feedTabBarController.modalPresentationStyle = .fullScreen
+            present(feedTabBarController, animated: true)
+            
             UserDefaults.standard.set(true, forKey: "loggedIn")
             let cookieJar: HTTPCookieStorage = HTTPCookieStorage.shared
             let data: Data = NSKeyedArchiver.archivedData(withRootObject: cookieJar.cookies)
